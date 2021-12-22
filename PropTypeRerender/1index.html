@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Btn({ mytext, big }) {
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize: big ? 18 : 1,
+          }}  
+        >
+            {mytext}
+        </button>
+      );
+    }
+    function App() {
+      return (
+        <div>
+          <Btn mytext="Save Changes" big={false} />
+          <Btn mytext="Continue" big={true} />  
+        </div>
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+
+    // Btn({mytext:"Save Changes"})
+    // <Btn mytext="Save Changes" x="asd" />
+    // 같은 것 Btn 에서 첫번째로 가져오는 props는 mytext:"Save Changes",  x:"asd"이다
+    // 두번째 프롭스따위는 없음
+
+    // {props.mytext} 적는 대신 shortcut(지름길)방법으로 적는 법
+    // (props)대신에 ({ mytext }) 넣어주고 {mytext}만 써주기
+  </script>
+</html>

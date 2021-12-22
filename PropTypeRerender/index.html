@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    function Btn({ mytext, fontSize = 6 }) {
+      // React가 아닌 자바스크립트에 의해 정의되지 않은 변수(prop)에 기본값 줄 수 있음(ex. fontSize = 6)
+      return (
+        <button
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            // fontSize: fontSize, 같으면 그냥 하나만 써도 됨
+            fontSize
+          }}  
+        >
+            {mytext}
+        </button>
+      );
+    }
+    Btn.propTypes = {
+      mytext: PropTypes.string.isRequired,
+      fontSize: PropTypes.number,
+    }
+    // isRequired 필수 mytext porp안 쓰면 에러 뜨게 만듦
+    function App() {
+      return (
+        <div>
+          <Btn mytext="Save Changes" fontSize={18} />
+          <Btn mytext="Continue" />
+        </div>
+      );
+    }
+
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
